@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPT Employee Management — CSW Web Service Test Client</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div class="brand">
+                <div class="brand-badge">FPT</div>
+                <div>
+                    <h1>Employee Web Service Client</h1>
+                    <p>Practical Test — CSW — Creating Services for the Web</p>
+                </div>
+            </div>
+            <div class="topbar-links">
+                <a href="/swagger-ui.html" target="_blank" class="btn btn-outline">Swagger UI</a>
+                <span class="btn btn-outline" style="cursor: default;">MySQL · Laragon</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Stats summary -->
+        <section class="stats-grid" aria-label="Employee Statistics">
+            <div class="stat-card">
+                <span class="stat-label">Total Employees</span>
+                <strong class="stat-value" id="stat-count">0</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Average Salary</span>
+                <strong class="stat-value" id="stat-avg">0 VND</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Highest Salary</span>
+                <strong class="stat-value" id="stat-max">0 VND</strong>
+            </div>
+        </section>
+
+        <div class="layout-grid">
+            <!-- Left: Add / Update Employee Form -->
+            <section class="card">
+                <div class="card-header">
+                    <h2 id="form-title">Add Employee</h2>
+                    <span class="method-pill" id="form-method-pill">POST /api/employees</span>
+                </div>
+                <p class="card-subtitle" id="form-subtitle">
+                    Calls web service method <code>addEmployees(Employee e)</code>
+                </p>
+
+                <form id="employee-form" novalidate>
+                    <input type="hidden" id="emp-id">
+
+                    <div class="form-group" id="id-display-group" hidden>
+                        <label for="emp-id-display">Employee ID</label>
+                        <input type="text" id="emp-id-display" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emp-name">Full Name <span class="req">*</span></label>
+                        <input type="text" id="emp-name" placeholder="e.g. Nguyen Van A" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emp-salary">Salary (VND) <span class="req">*</span></label>
+                        <input type="number" id="emp-salary" placeholder="e.g. 20000000" min="1" step="any" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Add Employee</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-edit-btn" hidden>Cancel Edit</button>
+                    </div>
+                </form>
+
+                <div id="alert-box" class="alert" role="status" hidden></div>
+            </section>
+
+            <!-- Right: Employee List Table -->
+            <section class="card">
+                <div class="card-header">
+                    <div>
+                        <h2>Employee Directory</h2>
+                        <p class="card-subtitle">Calls web service method <code>getEmployees()</code></p>
+                    </div>
+                    <div class="toolbar">
+                        <input type="search" id="search-input" placeholder="Search by name or ID..." aria-label="Search employees">
+                        <button type="button" class="btn btn-outline" id="refresh-btn">Refresh</button>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Employee Name</th>
+                                <th class="text-right">Salary (VND)</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employee-tbody">
+                            <tr>
+                                <td colspan="4" class="empty-cell">Loading employees...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Web Service Inspector -->
+        <section class="card inspector-card">
+            <div class="card-header">
+                <div>
+                    <h2>Web Service Call Inspector</h2>
+                    <p class="card-subtitle">Live request &amp; JSON response log for testing web services</p>
+                </div>
+                <span class="status-badge" id="last-status">Ready</span>
+            </div>
+            <pre id="ws-log">Waiting for web service call...</pre>
+        </section>
+    </main>
+
+    <script src="/app.js"></script>
+</body>
+</html>
