@@ -2,7 +2,6 @@
 
 Dự án hoàn chỉnh theo đề thi **Practical Test – CSW – Creating Services for the Web (Aptech / FPT Education)**, cấu hình kết nối trực tiếp **MySQL (Laragon)**.
 
-## Cấu trúc đáp ứng 100% thang điểm (15/15)
 
 | Hạng mục đề thi | Điểm | Triển khai trong dự án |
 | :--- | :---: | :--- |
